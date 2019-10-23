@@ -1,4 +1,3 @@
-
 ----------------------------------------------QUESTION 1----------------------------------------------
 
 --pull data for date range,get count of customers, and stage data for calculations
@@ -24,7 +23,7 @@ WITH
             ),
         q1_2 (distinct_cust_2018, purchase_count_35) as
         (
-        select 
+        select distinct
             --carry over count of unique customers in 2018 from first CTE
             distinct_cust_2018,
             --gets sum of unique customers who DID have a purchase (we can use this to calculate count and percent of thise who did not have a purchase)
@@ -38,4 +37,3 @@ select
     1-(purchase_count_35/distinct_cust_2018) as per_no35_order
 from q1_2
 ;
-

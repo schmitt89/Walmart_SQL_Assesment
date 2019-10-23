@@ -6,10 +6,11 @@ WITH
             -- create idex that will be required for join (assigns a row number to YQ which is a identifier for year and quarter)
     	SELECT 
             ugc_id,
-            DENSE_RANK() OVER (ORDER BY Year_Quarter) AS Indexed_Q,
+            DENSE_RANK() OVER (ORDER BY YQ) AS Indexed_Q,
             YQ
     	FROM 
     	    (
+    	    
     		--Create table that has distinct customer with purchase made for each quarter   
     		SELECT 
     		    ugc_id
@@ -23,8 +24,8 @@ WITH
     		GROUP BY 
     		    ugc_id, CONCAT (YEAR(to_date(visit_date, 'YYYYMMDD')),Quarter(to_date(visit_date, 'YYYYMMDD')))
 		    )
-	)
-    	
+	    )
+
     	
 --use CTE to calculate the rate at which customermers will repeat a purchase for a consecutive quarter. Data at quarter level
 SELECT
